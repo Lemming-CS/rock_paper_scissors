@@ -10,12 +10,18 @@
         function random () {
             return Math.floor(Math.random() * 3)
         }
-        let randNum = random()
-        let randomChoice = randNum === 0 ? "rock" : 
-        randNum === 1 ? "paper" : "scissors"
+        function computerChoice() {
+            let randNum = random()
+            let randomChoice = randNum === 0 ? "rock" : 
+            randNum === 1 ? "paper" : "scissors"
+            return randomChoice
+        }
+
+        let humanChoice = prompt("Choose a rock, paper or scissors", "rock")
+        console.log(humanChoice)
 
         
-        console.log(randomChoice)
+        console.log(computerChoice())
     </script>
 </body>
 </html>
