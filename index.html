@@ -7,20 +7,18 @@
 </head>
 <body>
     <script>
-        let humanChoice;
-        let computerChoice;
         function random () {
             return Math.floor(Math.random() * 3);
         }
         function getComputerChoice() {
             let randNum = random();
-            computerChoice = randNum === 0 ? "rock" : 
+            let computerChoice = randNum === 0 ? "rock" : 
             randNum === 1 ? "paper" : "scissors";
-            return
+            return computerChoice
         }
         function getHumanChoice() {
-            humanChoice = prompt("Choose a rock, paper or scissors", "rock").toLowerCase()
-            return
+            let humanChoice = prompt("Choose a rock, paper or scissors", "").toLowerCase()
+            return humanChoice
         }
         function capitalize(str) {
             result = str[0].toUpperCase() + str.slice(1).toLowerCase()
@@ -29,16 +27,20 @@
         computerScore = 0
         humanScore = 0
         function playRound () {
-            getComputerChoice()
-            getHumanChoice()
-            console.log(humanChoice, computerChoice)
+            let computerChoice = getComputerChoice()
+            let humanChoice = getHumanChoice()
+            console.log("Your choice: " + capitalize(humanChoice))
+            console.log("Computer choice: " + capitalize(computerChoice))
             if (humanChoice !== "rock" & humanChoice !== "paper" & humanChoice !== "scissors") 
             {
-                return "Invalid input"
+                console.log("Invalid input")
+                return 
             }
             else 
             {
-                if ((humanChoice === "rock" & computerChoice === "paper") | (humanChoice === "paper" & computerChoice === "scissors") | (humanChoice === "scissors" & computerChoice === "rock"))
+                if ((humanChoice === "rock" && computerChoice === "paper") 
+                || (humanChoice === "paper" && computerChoice === "scissors") 
+                || (humanChoice === "scissors" && computerChoice === "rock"))
                 {
                     console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
                     computerScore += 1;
@@ -50,13 +52,35 @@
                 else 
                 {
                     console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
-                    humanChoice += 1;
+                    humanScore += 1;
                 }
                 console.log("Human score: " + humanScore)
                 console.log("Computer score: " + computerScore)
             }
         }
-        playRound()
+        
+        function playGame (n) {
+            for (let i = 0; i < n; i++)
+            {
+                playRound()
+            }
+            if (humanScore > computerScore) 
+            {
+                console.log("You win!")
+            }
+            else if (humanScore === computerScore)
+            {
+                console.log("It's a draw!")
+            }
+            else
+            {
+                console.log("You lose!")
+            }
+            computerScore = 0
+            humanScore = 0
+        }
+        playGame(5)
+
     </script>
 </body>
 </html>
