@@ -7,21 +7,53 @@
 </head>
 <body>
     <script>
+        let humanChoice;
+        let computerChoice;
         function random () {
-            return Math.floor(Math.random() * 3)
+            return Math.floor(Math.random() * 3);
         }
-        function computerChoice() {
-            let randNum = random()
+        function getComputerChoice() {
+            let randNum = random();
             let randomChoice = randNum === 0 ? "rock" : 
-            randNum === 1 ? "paper" : "scissors"
-            return randomChoice
+            randNum === 1 ? "paper" : "scissors";
+            return randomChoice;
+        }
+        function getHumanChoice() {
+            let humanChoice = prompt("Choose a rock, paper or scissors", "rock").toLowerCase()
+        }
+        function capitalize(str) {
+            result = str[0].toUpperCase() + str.slice(1).toLowerCase()
+            return result
+        }
+        computerScore = 0
+        humanScore = 0
+        function playRound () {
+            getComputerChoice()
+            getHumanChoice()
+            console.log(humanChoice, computerChoice)
+            if (humanChoice !== "rock" & humanChoice !== "paper" & humanChoice !== "scissors") 
+            {
+                return "Invalid input"
+            }
+            else 
+            {
+                if ((humanChoice === "rock" & computerChoice === "paper") | (humanChoice === "paper" & computerChoice === "scissors") | (humanChoice === "scissors" & computerChoice === "rock"))
+                {
+                    console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`)
+                    computerScore ++;
+                }
+                else if (humanChoice === computerChoice)
+                {
+                    console.log("Draw")
+                }
+                else 
+                {
+                    console.log(`You win! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`)
+                }
+            }
         }
 
-        let humanChoice = prompt("Choose a rock, paper or scissors", "rock")
-        console.log(humanChoice)
-
-        
-        console.log(computerChoice())
+        console.log(playRound())
     </script>
 </body>
 </html>
